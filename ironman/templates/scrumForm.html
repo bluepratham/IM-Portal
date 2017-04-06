@@ -12,7 +12,12 @@
     </table>
     <input type="submit">
 </form>
-
+{% if sessions %}
+    Sessions already requested are:
+        {% for session in sessions %}
+            {{ session.SessionOn }}<br>
+        {% endfor %}
+{% endif %}
 
 
 </body>

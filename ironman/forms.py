@@ -1,5 +1,5 @@
 from django import forms
-from .models import Scrum
+from ironman.models import Scrum, SessionReq
 
 class ScrumForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,12 @@ class ScrumForm(forms.ModelForm):
         'roadblk' ,
         'plan_tdy',
         'learning'
+        ]
+
+class requestForm(forms.ModelForm):
+    class Meta:
+        model = SessionReq
+        fields = [
+            'SessionOn',
+            'Details'
         ]

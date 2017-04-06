@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Hello {{ user }} <br>
+    <a href ="add_scrum/"> Add scrum</a>
+    <a href ="request/"> Request a Session</a>
+    <a href = "synthesis/">View Article Synthesis</a>
+<br>
+{% for scrum in scrums %}
+    date : {{ scrum.date }}
+   completed yesterday: {{ scrum.comp_yest }} <br>
+{% endfor %}
+</body>
+</html>

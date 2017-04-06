@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^home/', include('im.urls')  ),
     url(r'^login/', auth_views.login, name = 'login'),
     url(r'^logout/', auth_views.logout, name = 'logout'),
-    url(r'^ironman/', include('ironman.urls'))
+    url(r'^ironman/', include('ironman.urls')),
+    url(r'^support/', include('ironman.urls')),
+
 ]
