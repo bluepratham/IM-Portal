@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ironman',
     'im',
+    'accounts',
+    
 ]
 
 MIDDLEWARE_CLASSES = [
