@@ -6,11 +6,13 @@ from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, limit_choices_to={'groups__name': 'Client'})
+    user = models.OneToOneField(User)
     description = models.CharField(max_length=100, default='')
     city = models.CharField(max_length=20, default='')
     website = models.URLField(default='')
     phone = models.IntegerField(default=0)
+    mock_client = models.ForeignKey(User,related_name='client',null=True,blank=True ,default='',
+                                    limit_choices_to={'groups__name': 'Client'})
 
     def __str__(self):
         return self.user.username + self.city
