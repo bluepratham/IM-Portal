@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import Project
 import django
 
 
@@ -13,6 +14,7 @@ class Scrum(models.Model): #TODO: ownership
     learning = models.CharField(max_length=500,blank=True)
     date = models.DateField(default='2011-11-11')
     created_by = models.CharField(max_length=50)
+    project = models.ForeignKey(Project, blank=True, null=True)
 
     def __str__(self):
         return self.created_by + " " + str(self.date)
@@ -21,8 +23,9 @@ class Scrum(models.Model): #TODO: ownership
 class SessionReq(models.Model):
     SessionOn = models.CharField(max_length=30)
     Details = models.CharField(max_length=200, blank=True)
-    project = models.CharField(max_length=20)
+    project = models.ForeignKey(Project)
     date = models.DateField(default='2011-11-11')
+    votes = models.IntegerField(default=1)
 
     def __str__(self):
         return self.SessionOn + " " + str(self.date)

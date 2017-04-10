@@ -11,7 +11,7 @@ class ScrumForm(forms.ModelForm):
         'learning'
         ]
 
-class requestForm(forms.ModelForm):
+class SessReqForm(forms.ModelForm):
     class Meta:
         model = SessionReq
         fields = [

@@ -1,24 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block body %}
 <form action="" method = "post">
     {% csrf_token %}
     <table>
-        {{ form.as_table }}
+        {{ form.as_p }}
     </table>
     <input type="submit">
 </form>
-{% if sessions %}
-    Sessions already requested are:
-        {% for session in sessions %}
-            {{ session.SessionOn }}<br>
+{{ sessions }}
+
+{% if scrums %}
+    Your last few Scrums are:<br>
+        {% for scrum in scrums %}
+            {{ scrum }}<br>
         {% endfor %}
 {% endif %}
 
+    <h4> Got any Problems?
+        <a href ="/ironman/{{ projNum  }}/request" >
+            Request a session
+        </a>
+    </h4>
 
-</body>
+{% endblock %}
 </html>

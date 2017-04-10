@@ -20,11 +20,12 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', include('im.urls')  ),
-    url(r'^login/', auth_views.login, name = 'login'),
-    url(r'^logout/', auth_views.logout, name = 'logout'),
+    # url(r'^home/', include('im.urls')  ),
+    # url(r'^login/', auth_views.login, name = 'login'),
+    # url(r'^logout/', auth_views.logout, name = 'logout'),
     url(r'^ironman/', include('ironman.urls')),
     url(r'^support/', include('ironman.urls')),
-    url(r'^account/', include('accounts.urls'))
+    url(r'^account/', include('accounts.urls')),
+
 
 ]

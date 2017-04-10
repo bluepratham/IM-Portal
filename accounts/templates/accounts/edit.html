@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+<div class="container">
+{% block body %}
+        <h1> Welcome to Edit </h1>
+    <h2>Edit</h2>
+
+    <form action = "" method="post">
+        {% csrf_token %}
+        {{ form.as_p     }}
+        <button type="submit" class="btn btn-danger" >Submit</button>
+    </form>
+{% endblock %}
+</div>
+

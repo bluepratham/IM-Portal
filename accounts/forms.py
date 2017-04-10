@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, IronMan, Folder
 
 class Registration(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -32,3 +32,15 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['user', 'description', 'city']
+
+class IronManForm(forms.ModelForm):
+    class Meta:
+        model = IronMan
+        fields = ['username', 'first_name',
+                  'mid_name', 'last_name']
+
+
+class FolderForm(forms.ModelForm):
+    class Meta:
+        model = Folder
+        fields = ['project', 'client']
