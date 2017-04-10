@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect, Http404
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import (Registration, editProfile,
                     UserProfileForm, IronManForm,
-                    FolderForm)
-from .models import Folder
+                    FolderForm, EvaluationForm)
+from .models import Folder, Project
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -82,4 +83,18 @@ def add_project(request):
 def view_teams(request):
     teams = Folder.objects.filter(client= request.user)
     return render(request, 'accounts/viewTeams.html', {'teams':teams})
+
+def evaluate(request, projID, teamName):
+    if request.method == "POST":
+        form = EvaluationForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.client = request.user
+            form.project = Project.objects.get(id=projID)
+            form.team = User.objects.get(username=teamName)
+            form.save()
+            return HttpResponse("Evaluations Saved")
+    else:
+        form = EvaluationForm()
+        return render(request, 'accounts/register.html', {'form':form})
 

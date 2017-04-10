@@ -2,7 +2,7 @@
 
 {% block body %}
      {% for team in teams %}
-      <a href=""> {{ team }}</a>
+      <a href="/account/evaluate/{{ team.project.id }}/{{ team.team }}"> {{ team }}</a>
          <br>
     {% endfor %}
 {% endblock %}

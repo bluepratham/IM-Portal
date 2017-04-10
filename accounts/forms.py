@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfile, IronMan, Folder
+from .models import UserProfile, IronMan, Folder, Evaluate
 
 class Registration(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -44,3 +44,8 @@ class FolderForm(forms.ModelForm):
     class Meta:
         model = Folder
         fields = ['project', 'client']
+
+class EvaluationForm(forms.ModelForm):
+    class Meta:
+        model = Evaluate
+        fields = ['performance','attitude']

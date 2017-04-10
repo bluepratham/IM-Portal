@@ -39,7 +39,7 @@ class Project(models.Model):
     timeInWeeks  = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.product_name + " " + str(self.timeInWeeks) + "week/s"
+        return self.product_name 
 
 
 class Folder(models.Model):
@@ -49,3 +49,17 @@ class Folder(models.Model):
 
     def __str__(self):
         return str(self.team) + " " + str(self.project)
+
+class Evaluate(models.Model):
+    team = models.ForeignKey(User, limit_choices_to=
+            {'groups__name': 'ironmen'}, related_name='eval_team')
+    client = models.ForeignKey(User, limit_choices_to={
+                'groups__name': 'Client'}, related_name='eval_client')
+    project = models.ForeignKey(Project)
+    performance = models.IntegerField(default=0)
+    attitude = models.IntegerField(default=0)
+
+    def __str__(self):
+        a = self.performance + self.attitude
+        return str(self.team) + " " + str(self.project) + " " + str(a)
+
