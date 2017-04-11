@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import (render, HttpResponse,
+                              redirect, HttpResponseRedirect)
 from datetime import datetime
 from accounts.models import Project, Product
 # Create your views here.
@@ -40,12 +41,13 @@ def req_session(request, id):
         context = {'form':form, 'sessions' : sessions }
         return render( request,'scrumForm.html', context )
     if request.method == "POST":
-        a = requestForm(request.POST)
+        a = SessReqForm(request.POST)
         if a.is_valid:
             a = a.save(commit = False)
             a.date = str(datetime.now().date())
+            a.project  = Project.objects.get(id=id)
             a.save()
-        return HttpResponse("Your Request Submitted. We will fulfill it ASAP")
+        return HttpResponseRedirect("")
 
 def contact(request):
     return render(request, 'contacts.html' )
