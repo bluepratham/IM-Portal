@@ -31,7 +31,7 @@ class editProfile(UserChangeForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['user', 'description', 'city']
+        fields = [ 'team_members']
 
 class IronManForm(forms.ModelForm):
     class Meta:
@@ -43,9 +43,11 @@ class IronManForm(forms.ModelForm):
 class FolderForm(forms.ModelForm):
     class Meta:
         model = Folder
-        fields = ['project', 'client']
+        fields = ['project', 'client',
+                  'mentor', 'prob_stat',
+                  'vertical']
 
 class EvaluationForm(forms.ModelForm):
     class Meta:
         model = Evaluate
-        fields = ['performance','attitude']
+        fields = ['performance','attitude','feedback']

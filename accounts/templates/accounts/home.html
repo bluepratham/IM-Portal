@@ -16,7 +16,10 @@
            <li> <a href="/account/add_project/"> Add Project</a></li>
         </ul>
     {% endif %}
-    {% for project in projects %}
-        <a href="/ironman/{{ project.project.id }}/ ">{{ project }}</a><br>
-    {% endfor %}
+    <ul class="list-group">
+        {% for project in projects %}
+            <li class="list-group-item"><a href="/ironman/{{ project.project.id }}/ ">{{ project }}</a></li>
+        {% endfor %}
+    </ul>
+    
 {% endblock %}

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% if user.is_authenticated %}
+
 
 {% block body %}
 <form action="" method = "post">
@@ -16,12 +18,18 @@
             {{ scrum }}<br>
         {% endfor %}
 {% endif %}
-
+    <h4><a href ="/ironman/{{ projNum }}/{{ user }}"> Share files with Client</a></h4>
     <h4> Got any Problems?
         <a href ="/ironman/{{ projNum  }}/request" >
             Request a session
         </a>
     </h4>
+    <br>
+    <h4>
+        <a href ="/ironman/{{ projNum  }}/bug" >
+            Raise a bug/feature Request
+        </a>
+    </h4>
 
 {% endblock %}
-</html>
+{% endif %}

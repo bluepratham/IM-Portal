@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import Project
+from accounts.models import Project, Product
+from datetime import  datetime
 import django
 
 
@@ -38,3 +39,21 @@ class synthesis(models.Model):
 
     def __str__(self):
         return self.heading[0:14]
+
+class Bug(models.Model):
+    txt = models.TextField("Enter Bug/Request",default='')
+    que = models.BooleanField("Bug?" , default=True)
+    team  = models.ForeignKey(User)
+    prod = models.ForeignKey(Product)
+
+    def __str__(self):
+        return  ('Bug ' if self.que else 'Feature ') + (self.txt[0:15])
+
+class ShareDoc(models.Model):
+    text = models.TextField("Write what you want to share", default='')
+    team = models.ForeignKey(User)
+    project = models.ForeignKey(Project)
+    time = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return str(self.team) + str(self.project) + self.text[1:15]

@@ -1,5 +1,6 @@
 from django import forms
-from ironman.models import Scrum, SessionReq
+from ironman.models import (
+    Scrum, SessionReq, Bug, ShareDoc)
 
 class ScrumForm(forms.ModelForm):
     class Meta:
@@ -18,3 +19,15 @@ class SessReqForm(forms.ModelForm):
             'SessionOn',
             'Details'
         ]
+
+class BugForm(forms.ModelForm):
+    class Meta:
+        model = Bug
+        fields = [
+            'txt','que','prod'
+        ]
+
+class ShareDocForm(forms.ModelForm):
+    class Meta:
+        model = ShareDoc
+        fields = ['text']

@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^register_ironman/$', views.register_Ironman),
     url(r'^add_project/$', views.add_project),
     url(r'^evaluate/$',views.view_teams),
-    url(r'evaluate/(\d{1,2})/(.*)', views.evaluate)
+    url(r'(\d{1,2})/(.*)/$', views.evaluate)
 
 ]

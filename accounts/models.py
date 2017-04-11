@@ -46,6 +46,9 @@ class Folder(models.Model):
     project = models.ForeignKey(Project)
     team = models.ForeignKey(User, limit_choices_to={'groups__name': 'ironmen'}, related_name='proj_team' )
     client = models.ForeignKey(User, limit_choices_to={'groups__name': 'Client'}, related_name='proj_client')
+    mentor = models.CharField(default='', max_length=40)
+    prob_stat = models.TextField()
+    vertical = models.CharField(max_length=20)
 
     def __str__(self):
         return str(self.team) + " " + str(self.project)
@@ -58,8 +61,14 @@ class Evaluate(models.Model):
     project = models.ForeignKey(Project)
     performance = models.IntegerField(default=0)
     attitude = models.IntegerField(default=0)
+    feedback = models.TextField(default='')
 
     def __str__(self):
         a = self.performance + self.attitude
         return str(self.team) + " " + str(self.project) + " " + str(a)
+class Product(models.Model):
+    prod_name = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.prod_name
 

@@ -5,6 +5,7 @@ from .forms import (Registration, editProfile,
                     FolderForm, EvaluationForm)
 from .models import Folder, Project
 from django.contrib.auth.models import User
+from ironman.models import ShareDoc
 # Create your views here.
 
 
@@ -15,7 +16,10 @@ def home(request):
             return render(request, 'accounts/home.html',
                           {'projects':projects})
         else:
-            return render(request, 'accounts/home.html')
+            # return render(request, 'accounts/home.html')
+            teams = Folder.objects.filter(client=request.user)
+            return render(request, 'accounts/viewTeams.html', {'teams': teams})
+
     except:
         raise Http404()
 
@@ -96,5 +100,12 @@ def evaluate(request, projID, teamName):
             return HttpResponse("Evaluations Saved")
     else:
         form = EvaluationForm()
-        return render(request, 'accounts/register.html', {'form':form})
+        prob = Folder.objects.get(team = User.objects.get(username=teamName), project = Project.
+                objects.get(id=projID)).prob_stat
+        print(prob)
+        shareditems = ShareDoc.objects.filter(team = User.objects.get(username=teamName),
+                                              project = Project.objects.get(id=projID))
+        print(shareditems)
+        return render(request, 'accounts/register.html', {'form':form,'prob':prob,
+                                                          'shared':shareditems})
 

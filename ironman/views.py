@@ -1,10 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from accounts.models import Project
+from accounts.models import Project, Product
 # Create your views here.
-
-from .forms import ScrumForm, SessReqForm
-from .models import Scrum, SessionReq, synthesis
+from django.contrib.auth.models import User
+from .forms import (ScrumForm, SessReqForm,
+                    BugForm, ShareDocForm)
+from .models import (Scrum, SessionReq,
+                     synthesis,Bug)
 def ironmanHome(request):
     user = request.user
     scrums = Scrum.objects.filter(created_by = user)
@@ -72,3 +74,30 @@ def project(request,projNum):
             a.save()
             print(request.user)
         return redirect("/ironman/" + str(projNum))
+
+def req_bug(request,a):
+    if request.method == "POST":
+        form = BugForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.team = request.user
+            form.save()
+            return HttpResponse('Your report was raised, Thanks')
+    else:
+        form = BugForm()
+        return render(request, 'scrumForm.html',{
+            'form' : form
+        } )
+
+def share(request, projID, teamName):
+    if request.method == "GET":
+        form = ShareDocForm()
+        return render(request, 'scrumForm.html', {'form':form})
+    elif request.method == "POST":
+        form = ShareDocForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.team = User.objects.get(username=teamName)
+            form.project = Project.objects.get(id = projID)
+            form.save()
+            return HttpResponse("Sent to Client")
