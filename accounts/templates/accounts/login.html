@@ -2,6 +2,9 @@
 
 <div class="container">
 {% block body %}
+    {% if user.is_authenticated %}
+        <h2> You are already logged in. Log Out to sign in as different user</h2>
+    {% else %}
         <h1> Welcome, You can login here</h1>
     <h2>Login</h2>
 
@@ -10,6 +13,7 @@
         {{ form.as_p     }}
         <button type="submit" class="btn btn-danger" >Login</button>
     </form>
+    {% endif %}
 {% endblock %}
 </div>
 

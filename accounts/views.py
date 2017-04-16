@@ -6,12 +6,15 @@ from .forms import (Registration, editProfile,
 from .models import Folder, Project
 from django.contrib.auth.models import User
 from ironman.models import ShareDoc
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
 def home(request):
-    try:
-        if request.user.groups.all()[0].name == 'ironmen':
+    if request.user.is_authenticated():
+        if request.user.is_staff:
+            return redirect('/admin/')
+        elif request.user.groups.all()[0].name == 'ironmen':
             projects = Folder.objects.filter(team=request.user)
             return render(request, 'accounts/home.html',
                           {'projects':projects})
@@ -19,11 +22,15 @@ def home(request):
             # return render(request, 'accounts/home.html')
             teams = Folder.objects.filter(client=request.user)
             return render(request, 'accounts/viewTeams.html', {'teams': teams})
+    else:
+        return redirect('/account/login/')
+    # try:
+    #
+    #
+    # except:
+    #     raise Http404()
 
-    except:
-        raise Http404()
-
-
+@login_required
 def register_profile(request):
     if request.method == "POST":
         form = Registration(request.POST)
@@ -36,7 +43,7 @@ def register_profile(request):
 
     else:
         form = Registration()
-        return render(request, 'accounts/login.html' , {'form':form})
+        return render(request, 'accounts/register.html' , {'form':form})
 
 def edit_profile(request):
     if request.method == "POST":
@@ -88,6 +95,7 @@ def view_teams(request):
     teams = Folder.objects.filter(client= request.user)
     return render(request, 'accounts/viewTeams.html', {'teams':teams})
 
+@login_required
 def evaluate(request, projID, teamName):
     if request.method == "POST":
         form = EvaluationForm(request.POST)

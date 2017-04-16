@@ -1,25 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-     hello {{ user.username }}  <br>
-    {% if user.groups.all.0.name ==  'Client' %}
+     <h2>Hello {{ user.username }}  </h2>
 
-        you are a client
-        <ul>
-            <li> <a href="/account/evaluate/"> Evaluate Teams</a></li>
-            <li> <a href="/account/shared/"> Check what teams have shared</a></li>
 
-        </ul>
-    {% elif user.groups.all.0.name ==  'ironmen' %}
-        you are an IRONMAN
-        <ul>
-           <li> <a href="/account/add_project/"> Add Project</a></li>
-        </ul>
-    {% endif %}
+    <h3> Which project are you currently working on?</h3>
     <ul class="list-group">
         {% for project in projects %}
             <li class="list-group-item"><a href="/ironman/{{ project.project.id }}/ ">{{ project }}</a></li>
         {% endfor %}
     </ul>
+
+     {% if projects|length  < 3 %}
+
+              <a href="/account/add_project/"> <button class="btn btn-success" >Add Project</button> </a>
+
+        {% endif %}
 
 {% endblock %}

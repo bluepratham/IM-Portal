@@ -6,7 +6,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
 
-    <title> {% block title %}Title {% endblock %}</title>
+    <title> {% block title %}IronMan Portal{% endblock %}</title>
 
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -20,31 +20,37 @@
           <a class="navbar-brand" href="#">{{ user }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/account/">Home</a></li>
-            <li><a href="/account/edit_userprofile/">Edit Profile</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+
+            {% if user.is_authenticated %}
+
+              <ul class="nav navbar-nav">
+                <li ><a href="/account/">Home</a></li>
+                <li><a href="/account/edit_userprofile/">Edit Profile</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
               </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              {% if not user.is_authenticated %}
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="active"><a href="/account/logout/">Logout<span class="sr-only">(current)</span></a></li>
+              </ul>
+
+            {% else %}
+
+              <ul class="nav navbar-nav navbar-right">
                   <li class="active"><a href="/account/register/">Register<span class="sr-only">(current)</span></a></li>
                   <li class="active"><a href="/account/login/">Login<span class="sr-only">(current)</span></a></li>
-              {% else %}
-                  <li class="active"><a href="/account/logout/">Logout<span class="sr-only">(current)</span></a></li>
-              {% endif %}
-          </ul>
+              </ul>
+            {% endif %}
         </div><!--/.nav-collapse -->
       </div>
     </nav>
