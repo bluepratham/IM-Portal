@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+    <div class="container">
+
+    {% block body %}
+        <h3 >Problem Statement:</h3>
+        <div class="jumbotron">
+            <h4 class="blockquote">{{ prob }}</h4>
+        </div>
+
+        <h2> Team has shared following with you</h2>
+        <div class="container">
+        {% if shared %}
+
+            {% for share in shared %}
+                {{ share.text }}<br>
+            {% endfor %}
+            </div>
+
+        {% endif %}
+        <br><br>
+
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Evaluate</button>
+        <div id="demo" class="collapse">
+            <form action="" method="post" class="form">
+                {% csrf_token %}
+                {% bootstrap_form form layout='layout' %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %} Submit
+                    </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    {% endblock %}

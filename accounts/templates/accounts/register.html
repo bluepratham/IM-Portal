@@ -3,7 +3,8 @@
     <div class="container">
 
     {% block body %}
-        <h2>Register</h2>
+
+        <h2>Fill up the details and press Submit!</h2>
 
         <form action="" method="post" class="form">
             {% csrf_token %}
@@ -22,13 +23,7 @@
         </form>
     --->
 
-    {% if shared %}
-        <h3>Problem Statement:</h3><h4>{{ prob }}</h4>
-        {% for share in shared %}
-            {{ share.text }}
-        {% endfor %}
 
-     {% endif %}
     {% endblock %}
 
 

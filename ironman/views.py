@@ -5,7 +5,7 @@ from accounts.models import Project, Product
 # Create your views here.
 from django.contrib.auth.models import User
 from .forms import (ScrumForm, SessReqForm,
-                    BugForm, ShareDocForm)
+                    BugForm, ShareDocForm, SynthesisForm)
 from .models import (Scrum, SessionReq,
                      synthesis,Bug)
 def ironmanHome(request):
@@ -29,7 +29,7 @@ def ironmanHome(request):
 #             a.save()
 #             print(request.user)
 #         return HttpResponse("Scrum Saved")
-
+#TODO:make all forms collapsible
 
 def req_session(request, id):
     form = SessReqForm()
@@ -103,3 +103,4 @@ def share(request, projID, teamName):
             form.project = Project.objects.get(id = projID)
             form.save()
             return HttpResponse("Sent to Client")
+

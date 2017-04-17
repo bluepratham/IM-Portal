@@ -110,11 +110,11 @@ def evaluate(request, projID, teamName):
     else:
         form = EvaluationForm()
         prob = Folder.objects.get(team = User.objects.get(username=teamName), project = Project.
-                objects.get(id=projID)).prob_stat
+                objects.get(id=projID), client=request.user).prob_stat
         print(prob)
         shareditems = ShareDoc.objects.filter(team = User.objects.get(username=teamName),
                                               project = Project.objects.get(id=projID))
         print(shareditems)
-        return render(request, 'accounts/register.html', {'form':form,'prob':prob,
+        return render(request, 'accounts/teamDetail.html', {'form':form,'prob':prob,
                                                           'shared':shareditems})
 

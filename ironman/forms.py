@@ -1,6 +1,6 @@
 from django import forms
 from ironman.models import (
-    Scrum, SessionReq, Bug, ShareDoc)
+    Scrum, SessionReq, Bug, ShareDoc, synthesis)
 
 class ScrumForm(forms.ModelForm):
     class Meta:
@@ -31,3 +31,9 @@ class ShareDocForm(forms.ModelForm):
     class Meta:
         model = ShareDoc
         fields = ['text']
+
+class SynthesisForm(forms.ModelForm):
+    class Meta:
+        model = synthesis
+        fields = ['heading', 'content',
+                  'source', 'by']

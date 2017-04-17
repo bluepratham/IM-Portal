@@ -36,7 +36,7 @@ class synthesis(models.Model):
     content = models.TextField(max_length=1000)
     source = models.URLField()
     by = models.CharField(max_length= 15)
-
+    time = models.DateTimeField(default=datetime.now)
     def __str__(self):
         return self.heading[0:14]
 
@@ -45,7 +45,7 @@ class Bug(models.Model):
     que = models.BooleanField("Bug?" , default=True)
     team  = models.ForeignKey(User)
     prod = models.ForeignKey(Product)
-
+    time = models.DateTimeField(default=datetime.now)
     def __str__(self):
         return  ('Bug ' if self.que else 'Feature ') + (self.txt[0:15])
 
@@ -53,7 +53,7 @@ class ShareDoc(models.Model):
     text = models.TextField("Write what you want to share", default='')
     team = models.ForeignKey(User)
     project = models.ForeignKey(Project)
-    time = models.DateTimeField(default=datetime.now())
+    time = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return str(self.team) + str(self.project) + self.text[1:15]
