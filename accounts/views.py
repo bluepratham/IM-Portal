@@ -21,6 +21,7 @@ def home(request):
         else:
             # return render(request, 'accounts/home.html')
             teams = Folder.objects.filter(client=request.user)
+
             return render(request, 'accounts/viewTeams.html', {'teams': teams})
     else:
         return redirect('/account/login/')
@@ -30,7 +31,7 @@ def home(request):
     # except:
     #     raise Http404()
 
-@login_required
+
 def register_profile(request):
     if request.method == "POST":
         form = Registration(request.POST)

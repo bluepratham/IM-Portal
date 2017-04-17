@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
-
+{% load bootstrap3 %}
     <div class="container">
 
     {% block body %}
+        <h2>Register</h2>
 
-        {% if user.groups.all.0.name !=  'Clien' %}
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form layout='layout' %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Submit
+                </button>
+            {% endbuttons %}
+        </form>
 
-        {% if not user.is_authenticated %}
-            <h2>Register</h2>
-        {% endif %}
-
-        <form action = "" method="post">
+    <!---    <form action = "" method="post">
             {% csrf_token %}
             {{ form.as_p    }}
             <button type="submit" class="btn btn-danger" >Submit</button>
         </form>
-        {% endif %}
+    --->
+
     {% if shared %}
         <h3>Problem Statement:</h3><h4>{{ prob }}</h4>
         {% for share in shared %}
@@ -24,6 +30,7 @@
 
      {% endif %}
     {% endblock %}
+
 
 </div>
 
