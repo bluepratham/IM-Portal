@@ -34,11 +34,6 @@ def req_session(request, id):
 def contact(request):
     return render(request, 'contacts.html' )
 
-from django.template import Template, Context
-def synth(request):
-    context = {'model': synthesis.objects.all()}
-    temp = Template(" {% for object in model%}{{object.content}}{% endfor %}")
-    return HttpResponse(temp.render(Context(context)))
 
 def project(request,projNum):
     print(request.method)
@@ -94,3 +89,22 @@ def share(request, projID, teamName):
             form.save()
             return HttpResponse("Sent to Client")
 
+
+from django.views.generic.list import ListView
+
+class scrumlist(ListView):
+    model = Scrum
+    template_name = 'listview.html'
+    context_object_name = 'scrumlist'
+    # queryset = Scrum.objects.filter(created_by=request.user)
+
+    @property
+    def get_queryset(self):
+        # print(a)
+        print(self.kwargs['name'])
+        return Scrum.objects.filter(created_by = self.request.user)
+
+def synth(request):
+    pass
+#TODO: scrum listview is done, make detailview for it with proper href in list view
+#TODO: check what is @property decorator (suggested by pycharm)
