@@ -13,24 +13,6 @@ def ironmanHome(request):
     scrums = Scrum.objects.filter(created_by = user)
     return render(request, 'ironmanHome.html', {'scrums':scrums})
 
-# def Scrum_Create(request):
-#     print(request.method)
-#     form = ScrumForm()
-#     if request.method == "GET":
-#         context = {'form':form}
-#         return render(request, 'scrumForm.html', context)
-#     if request.method == "POST":
-#         a = ScrumForm(request.POST)
-#         if a.is_valid:
-#             print(a.is_valid)
-#             a = a.save(commit = False)
-#             a.date = str(datetime.now().date())
-#             a.created_by = str(request.user.username)
-#             a.save()
-#             print(request.user)
-#         return HttpResponse("Scrum Saved")
-#TODO:make all forms collapsible
-
 def req_session(request, id):
     form = SessReqForm()
 
@@ -60,10 +42,18 @@ def synth(request):
 
 def project(request,projNum):
     print(request.method)
-    form = ScrumForm()
+    scrumform = ScrumForm()
+    bugform = BugForm()
+    sessionform = SessReqForm()
+    shareform = ShareDocForm()
+    sessions = SessionReq.objects.filter(
+        project=Project.objects.get(id=projNum))
     if request.method == "GET":
         scrums = Scrum.objects.filter(created_by=request.user)
-        context = {'form': form, 'scrums':scrums, 'projNum':projNum}
+        context = {'scrumform': scrumform, 'scrums':scrums,
+                   'bugform': bugform ,'shareform':shareform,
+                   'sessionform':sessionform ,'sessions':sessions ,
+                   'projNum':projNum}
         return render(request, 'scrumForm.html', context)
     if request.method == "POST":
         a = ScrumForm(request.POST)

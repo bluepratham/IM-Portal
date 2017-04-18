@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^(\d{1,2})/$', views.project ),
     url(r'^(\d{1,2})/bug/$', views.req_bug),
     url(r'^(\d{1,2})/(.*)/$', views.share),
-
+    # url(r'^scrum\$', views.scrumlist.as_view())
 ]

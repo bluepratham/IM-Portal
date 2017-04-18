@@ -8,7 +8,7 @@ import django
 
 # Create your models here.
 
-class Scrum(models.Model): #TODO: ownership
+class Scrum(models.Model):
     comp_yest = models.TextField(max_length=500 )
     roadblk = models.CharField(max_length=500,blank=True)
     plan_tdy = models.CharField(max_length=500)
