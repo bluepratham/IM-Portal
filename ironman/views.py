@@ -90,19 +90,25 @@ def share(request, projID, teamName):
             return HttpResponse("Sent to Client")
 
 
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 class scrumlist(ListView):
     model = Scrum
     template_name = 'listview.html'
     context_object_name = 'scrumlist'
     # queryset = Scrum.objects.filter(created_by=request.user)
+    s = 'was'
 
-    @property
     def get_queryset(self):
-        # print(a)
         print(self.kwargs['name'])
-        return Scrum.objects.filter(created_by = self.request.user)
+        return get_list_or_404(Scrum.objects.filter(created_by = self.request.user))
+
+class scrumview(DetailView):
+    model = Scrum
+
+    def get_object(self):
+        return get_object_or_404(Scrum.objects.get(id=1))
 
 def synth(request):
     pass
