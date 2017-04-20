@@ -44,14 +44,16 @@ def project(request,projNum):
     sessions = SessionReq.objects.filter(
         project=Project.objects.get(id=projNum))
     if request.method == "GET":
-        prob_stat = Folder.objects.get(project=Project.objects.get(id=projNum),
-                                  team=request.user).prob_stat
-        print(prob_stat)
+        obj = Folder.objects.get(project=Project.objects.get(id=projNum),
+                                  team=request.user)
+        prob_stat = obj.prob_stat
+        is_active = obj.is_active
         scrums = Scrum.objects.filter(created_by=request.user)
         context = {'scrumform': scrumform, 'scrums':scrums,
                    'bugform': bugform ,'shareform':shareform,
                    'sessionform':sessionform ,'sessions':sessions ,
-                   'projNum':projNum, 'prob_stat':prob_stat}
+                   'projNum':projNum, 'prob_stat':prob_stat,
+                   'is_active': is_active}
         return render(request, 'scrumForm.html', context)
     if request.method == "POST":
         a = ScrumForm(request.POST)

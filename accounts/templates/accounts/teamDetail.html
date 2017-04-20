@@ -19,7 +19,7 @@
 
         {% endif %}
         <br><br>
-
+        {% if is_active %}
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Evaluate</button>
         <div id="demo" class="collapse">
             <form action="" method="post" class="form">
@@ -32,5 +32,6 @@
                 {% endbuttons %}
             </form>
         </div>
+        {% endif %}
     </div>
     {% endblock %}

@@ -17,7 +17,7 @@
         {% endfor %}
 {% endif %}
 <br><br><br>
-
+{% if is_active %}
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#scrum">Add Scrum</button>
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#bug">Report Bug</button>
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#share">Share Files</button>
@@ -70,7 +70,7 @@
         {% endfor %}
     {% endif %}
     </div> <br><br><br>
-
+{% endif %}
 
     <!---
 <div class="container text-center">

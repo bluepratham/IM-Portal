@@ -45,7 +45,7 @@ class Project(models.Model):
         return self.product_name 
 
 
-class Folder(models.Model): #TODO: add is_active field to flag it is inactive once evaluation is done
+class Folder(models.Model):
     project = models.ForeignKey(Project)
     team = models.ForeignKey(User, limit_choices_to={'groups__name': 'ironmen'}, related_name='proj_team' )
     client = models.ForeignKey(User, limit_choices_to={'groups__name': 'Client'}, related_name='proj_client')
@@ -54,6 +54,7 @@ class Folder(models.Model): #TODO: add is_active field to flag it is inactive on
     vertical = models.CharField(max_length=20)
     time = models.DateTimeField(default=datetime.now)
     slug = models.SlugField(unique=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.team) + " " + str(self.project)

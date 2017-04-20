@@ -106,15 +106,21 @@ def evaluate(request, projID, teamName):
             form.project = Project.objects.get(id=projID)
             form.team = User.objects.get(username=teamName)
             form.save()
+            folder = Folder.objects.get(client=request.user,
+                                        team=User.objects.get(username=teamName),
+                                        project=Project.objects.get(id=projID))
+            folder.is_active = False
+            folder.save()
             return HttpResponse("Evaluations Saved")
     else:
         form = EvaluationForm()
-        prob = Folder.objects.get(team = User.objects.get(username=teamName), project = Project.
-                objects.get(id=projID), client=request.user).prob_stat
-        print(prob)
+        object = Folder.objects.get(team = User.objects.get(username=teamName), project = Project.
+                objects.get(id=projID), client=request.user)
+        prob = object.prob_stat
+        is_active = object.is_active
         shareditems = ShareDoc.objects.filter(team = User.objects.get(username=teamName),
                                               project = Project.objects.get(id=projID))
         print(shareditems)
         return render(request, 'accounts/teamDetail.html', {'form':form,'prob':prob,
-                                                          'shared':shareditems})
+                                                          'shared':shareditems,'is_active':is_active})
 
