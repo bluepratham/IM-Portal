@@ -1,7 +1,7 @@
 from django.shortcuts import (render, HttpResponse,
                               redirect, HttpResponseRedirect)
 from datetime import datetime
-from accounts.models import Project, Product
+from accounts.models import Project, Product, Folder
 # Create your views here.
 from django.contrib.auth.models import User
 from .forms import (ScrumForm, SessReqForm,
@@ -29,7 +29,7 @@ def req_session(request, id):
             a.date = str(datetime.now().date())
             a.project  = Project.objects.get(id=id)
             a.save()
-        return HttpResponseRedirect("")
+        return HttpResponse("Session Request Submitted")
 
 def contact(request):
     return render(request, 'contacts.html' )
@@ -44,11 +44,14 @@ def project(request,projNum):
     sessions = SessionReq.objects.filter(
         project=Project.objects.get(id=projNum))
     if request.method == "GET":
+        prob_stat = Folder.objects.get(project=Project.objects.get(id=projNum),
+                                  team=request.user).prob_stat
+        print(prob_stat)
         scrums = Scrum.objects.filter(created_by=request.user)
         context = {'scrumform': scrumform, 'scrums':scrums,
                    'bugform': bugform ,'shareform':shareform,
                    'sessionform':sessionform ,'sessions':sessions ,
-                   'projNum':projNum}
+                   'projNum':projNum, 'prob_stat':prob_stat}
         return render(request, 'scrumForm.html', context)
     if request.method == "POST":
         a = ScrumForm(request.POST)

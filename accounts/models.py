@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from datetime import datetime
+from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 
@@ -51,8 +53,16 @@ class Folder(models.Model): #TODO: add is_active field to flag it is inactive on
     prob_stat = models.TextField()
     vertical = models.CharField(max_length=20)
     time = models.DateTimeField(default=datetime.now)
+    slug = models.SlugField(unique=True)
+
     def __str__(self):
         return str(self.team) + " " + str(self.project)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self.team) +" "+ str(self.project))
+        super(Folder, self).save(*args, **kwargs)
+
+
 
 class Evaluate(models.Model):
     team = models.ForeignKey(User, limit_choices_to=

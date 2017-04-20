@@ -28,6 +28,10 @@ class SessionReq(models.Model):
     date = models.DateField(default='2011-11-11')
     votes = models.IntegerField(default=1)
 
+    class Meta:
+        ordering = ['-date']
+        verbose_name = "Requested Session"
+
     def __str__(self):
         return self.SessionOn + " " + str(self.date)
 
@@ -37,6 +41,7 @@ class synthesis(models.Model):
     source = models.URLField()
     by = models.CharField(max_length= 15)
     time = models.DateTimeField(default=datetime.now)
+
     def __str__(self):
         return self.heading[0:14]
 
