@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from datetime import datetime
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+from django.core.validators import MaxValueValidator,MinValueValidator
+
 # Create your models here.
 
 
@@ -71,9 +73,9 @@ class Evaluate(models.Model):
     client = models.ForeignKey(User, limit_choices_to={
                 'groups__name': 'Client'}, related_name='eval_client')
     project = models.ForeignKey(Project)
-    performance = models.IntegerField(default=0)
+    performance = models.IntegerField(default=0) #TODO:add min and max check on these values
     attitude = models.IntegerField(default=0)
-    feedback = models.TextField(default='')
+    feedback = models.TextField(blank=True)
     time = models.DateTimeField(default=datetime.now)
 
     def __str__(self):

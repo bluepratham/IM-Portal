@@ -2,7 +2,27 @@
 
 {% block body %}
 {#    {{ view.s }}#}
-    {% for object in object_list %}
-        {{ object }} <br>
-    {% endfor %}
+
+       <a href="{{ object.pk }}">{{ object }}</a>  <br>
+
+
+
+
+
+
+<div class="list-group">
+  {% for object in object_list %}
+
+  <a href="{{ object.pk }}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ object.heading|title }}</h5>
+      <small>{{ object.content }}</small>
+    </div>
+    <p class="mb-1">{{ object.source }}</p>
+    <small> {{ object.time }}</small>
+  </a>
+
+{% endfor %}
+</div>
+
 {% endblock %}

@@ -95,13 +95,13 @@ def share(request, projID, teamName):
             return HttpResponse("Sent to Client")
 
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import get_list_or_404, get_object_or_404
 
 class scrumlist(ListView):
     model = Scrum
     template_name = 'listview.html'
-    context_object_name = 'scrumlist'
+
     # queryset = Scrum.objects.filter(created_by=request.user)
     s = 'was'
 
@@ -115,7 +115,23 @@ class scrumview(DetailView):
     def get_object(self):
         return get_object_or_404(Scrum.objects.get(id=1))
 
-def synth(request):
-    pass
+class SynthesisList(ListView):
+    model = synthesis
+    template_name = "listview.html"
+
+class SynthesisDetail(DetailView):
+    model = synthesis
+
+def SynthesisCreate(request):
+    form = SynthesisForm()
+    if request.method == "POST":
+        form = SynthesisForm(request.POST)
+        form = form.save(commit=False)
+        form.team = request.user
+        form.save()
+    elif request.method == "GET":
+        return render(request, 'ironman/synthesis_form.html', {'form':form})
+
+
 #TODO: scrum listview is done, make detailview for it with proper href in list view
 #TODO: check what is @property decorator (suggested by pycharm)

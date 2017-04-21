@@ -40,6 +40,7 @@ class synthesis(models.Model):
     content = models.TextField(max_length=1000)
     source = models.URLField()
     by = models.CharField(max_length= 15)
+    team = models.ForeignKey(User)
     time = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
