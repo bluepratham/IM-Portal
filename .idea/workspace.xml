@@ -41,12 +41,14 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-              <folding />
+              <folding>
+                <marker date="1492783573996" expanded="true" signature="70:664" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ironman/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="313">
@@ -66,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scrumForm.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scrumForm.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ironman/templates/scrumForm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="70" column="76" lean-forward="false" selection-start-line="70" selection-start-column="76" selection-end-line="70" selection-end-column="76" />
+            <state relative-caret-position="204">
+              <caret line="71" column="47" lean-forward="false" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -150,9 +152,9 @@
         <option value="$PROJECT_DIR$/portal/settings.py" />
         <option value="$PROJECT_DIR$/ironman/forms.py" />
         <option value="$PROJECT_DIR$/ironman/urls.py" />
-        <option value="$PROJECT_DIR$/ironman/templates/scrumForm.html" />
         <option value="$PROJECT_DIR$/ironman/models.py" />
         <option value="$PROJECT_DIR$/ironman/views.py" />
+        <option value="$PROJECT_DIR$/ironman/templates/scrumForm.html" />
       </list>
     </option>
   </component>
@@ -870,7 +872,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding />
+          <folding>
+            <marker date="1492783573996" expanded="true" signature="70:664" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -885,14 +889,6 @@
             <element signature="e#1642#1972#0" expanded="false" />
             <element signature="e#2028#2317#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ironman/templates/scrumForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="70" column="76" lean-forward="false" selection-start-line="70" selection-start-column="76" selection-end-line="70" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -911,6 +907,14 @@
             <element signature="e#4012#4110#0" expanded="false" />
             <marker date="1492786725595" expanded="false" signature="4289:4745" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ironman/templates/scrumForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="71" column="47" lean-forward="false" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
