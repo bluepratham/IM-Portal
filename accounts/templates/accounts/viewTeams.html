@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    {% if teams %}
+        <h2>Following teams are mapped to you:</h2>
   <!---  <ul class="list-group">
         {% for team in teams %}
             <li class="list-group-item">
@@ -10,6 +12,9 @@
         {% endfor %}
     </ul>
     --->
+    {% else %}
+        <h2> No teams are currently mapped to you.</h2>
+    {% endif %}
     <br><br><br>
 
     <div class="row">
