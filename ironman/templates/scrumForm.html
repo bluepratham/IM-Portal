@@ -65,9 +65,16 @@
             <input type="submit">
         </form>
     {% if sessions %}
-       {% for session in sessions %}
-            {{ session.SessionOn }}<br>
-        {% endfor %}
+        <form action="vote/" method="post"> {% csrf_token %}
+            {% for session in sessions %}
+                <form action="">
+                <input type="checkbox" name="sessionID" value="{{ session.id }}"> {{ session.SessionOn }}
+                <br>
+            {% endfor %}
+            <input type="submit" value="Vote"></form>
+
+        </form>
+
     {% endif %}
     </div> <br><br><br>
 {% endif %}

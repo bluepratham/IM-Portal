@@ -10,7 +10,7 @@ import django
 
 class Scrum(models.Model):
     comp_yest = models.TextField(max_length=500 )
-    roadblk = models.CharField(max_length=500,blank=True)
+    roadblk = models.CharField(max_length=500,blank=True, verbose_name='RoadBlocks if any')
     plan_tdy = models.CharField(max_length=500)
     learning = models.CharField(max_length=500,blank=True)
     date = models.DateField(default='2011-11-11')
@@ -26,14 +26,14 @@ class SessionReq(models.Model):
     Details = models.CharField(max_length=200, blank=True)
     project = models.ForeignKey(Project)
     date = models.DateField(default='2011-11-11')
-    votes = models.IntegerField(default=1)
+    votes = models.ManyToManyField(User,limit_choices_to={'groups__name': 'ironmen'})
 
     class Meta:
         ordering = ['-date']
         verbose_name = "Requested Session"
 
     def __str__(self):
-        return self.SessionOn + " " + str(self.date)
+        return self.SessionOn + " " + str(self.date) + " " + str(self.votes.count())
 
 class synthesis(models.Model):
     heading = models.CharField(max_length=30)
@@ -55,7 +55,7 @@ class Bug(models.Model):
     def __str__(self):
         return  ('Bug ' if self.que else 'Feature ') + (self.txt[0:15])
 
-class ShareDoc(models.Model):
+class ShareDoc(models.Model):  #TODO: add tinymce
     text = models.TextField("Write what you want to share", default='')
     team = models.ForeignKey(User)
     project = models.ForeignKey(Project)

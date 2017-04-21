@@ -36,7 +36,6 @@ def contact(request):
 
 
 def project(request,projNum):
-    print(request.method)
     scrumform = ScrumForm()
     bugform = BugForm()
     sessionform = SessReqForm()
@@ -135,3 +134,11 @@ def SynthesisCreate(request):
 
 #TODO: scrum listview is done, make detailview for it with proper href in list view
 #TODO: check what is @property decorator (suggested by pycharm)
+
+def vote(request,pk):
+    if request.method=="POST":
+        for id in request.POST.getlist('sessionID'):
+            session = SessionReq.objects.get(id=id)
+            session.votes.add(request.user)
+            # session.votes.update(request.user)
+        return HttpResponseRedirect('/ironman/'+pk)
