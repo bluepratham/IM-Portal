@@ -55,8 +55,8 @@ class Bug(models.Model):
     def __str__(self):
         return  ('Bug ' if self.que else 'Feature ') + (self.txt[0:15])
 
-class ShareDoc(models.Model):  #TODO: add tinymce
-    text = models.TextField("Write what you want to share", default='')
+class ShareDoc(models.Model):
+    text = models.TextField()
     team = models.ForeignKey(User)
     project = models.ForeignKey(Project)
     time = models.DateTimeField(default=datetime.now)

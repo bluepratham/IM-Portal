@@ -92,7 +92,7 @@ def share(request, projID, teamName):
             form = form.save(commit=False)
             form.team = User.objects.get(username=teamName)
             form.project = Project.objects.get(id = projID)
-            form.text = request.POST['content']
+            # form.text = request.POST['content']
             form.save()
             return HttpResponse("Sent to Client")
 
@@ -142,7 +142,6 @@ def SynthesisCreate(request):
 
 
 #TODO: scrum listview is done, make detailview for it with proper href in list view
-#TODO: check what is @property decorator (suggested by pycharm)
 
 def vote(request,pk):
     if request.method=="POST":

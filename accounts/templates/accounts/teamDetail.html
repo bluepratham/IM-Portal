@@ -9,12 +9,19 @@
         </div>
 
         <h2> Team has shared following with you</h2>
-        <div class="container">
-        {% if shared %}
 
-            {% for share in shared %}
-                {{ share.text|safe }}<br>
-            {% endfor %}
+        {% if shared %}
+            <div class="container">
+
+                {% for share in shared %}
+
+                    {{ share.time|date }}
+                    <div class="container">
+                    {{ share.text|safe }}
+                    </div>
+                    <br>
+                    <hr>
+                {% endfor %}
             </div>
 
         {% endif %}
