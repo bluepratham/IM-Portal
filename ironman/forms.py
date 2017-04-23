@@ -3,7 +3,7 @@ from ironman.models import (
     Scrum, SessionReq, Bug, ShareDoc, synthesis)
 from tinymce.widgets import TinyMCE
 
-#TODO  add tinymce to scrum 
+#TODO  add tinymce to scrum
 class ScrumForm(forms.ModelForm):
     # content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 40}))
     class Meta:
