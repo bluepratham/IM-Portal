@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    url(r'^$',include('accounts.urls')),
     url(r'^admin/', admin.site.urls),
     # url(r'^home/', include('im.urls')  ),
     # url(r'^login/', auth_views.login, name = 'login'),

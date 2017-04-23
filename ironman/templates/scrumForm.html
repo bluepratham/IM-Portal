@@ -71,7 +71,7 @@
             {% for session in sessions %}
                 <form action="">
                 <input type="checkbox" name="sessionID" value="{{ session.id }}"> {{ session.SessionOn }}
-{#                {% if request.user in  %}#} #TODO: show start/favorited image in user has already voted
+{#                {% if request.user in  #TODO: show start/favorited image in user has already voted  %}#}
                 <br>
             {% endfor %}
             <input type="submit" value="Vote"></form>
