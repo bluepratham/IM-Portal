@@ -100,13 +100,15 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 class scrumlist(ListView):
     model = Scrum
     template_name = 'listview.html'
-
+    context_object_name = 'scrumList'
     # queryset = Scrum.objects.filter(created_by=request.user)
     s = 'was'
 
     def get_queryset(self):
         print(self.kwargs['name'])
-        return get_list_or_404(Scrum.objects.filter(created_by = self.request.user))
+        object =  get_list_or_404(Scrum.objects.filter(created_by = self.request.user))
+        print(object)
+        return object
 
 class scrumview(DetailView):
     model = Scrum
@@ -117,6 +119,9 @@ class scrumview(DetailView):
 class SynthesisList(ListView):
     model = synthesis
     template_name = "listview.html"
+    context_object_name = 'synthesisList'
+    synthesisform = SynthesisForm()
+
 
 class SynthesisDetail(DetailView):
     model = synthesis
@@ -128,6 +133,7 @@ def SynthesisCreate(request):
         form = form.save(commit=False)
         form.team = request.user
         form.save()
+        return HttpResponseRedirect("/ironman/synthesis/")
     elif request.method == "GET":
         return render(request, 'ironman/synthesis_form.html', {'form':form})
 

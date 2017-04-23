@@ -1,28 +1,53 @@
 {% extends 'base.html' %}
-
+{% load bootstrap3 %}
 {% block body %}
 {#    {{ view.s }}#}
 
-       <a href="{{ object.pk }}">{{ object }}</a>  <br>
 
-
-
-
-
+{% if synthesisList and user.groups.all.0.name == 'ironmen' %}
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#synthesis">Add Synthesis</button>
+    <div id="synthesis" class="collapse">
+            <form action="\ironman\synthesis\add\" method = "post">
+                {% csrf_token %}
+                <table>
+                    {% bootstrap_form view.synthesisform %}
+                </table>
+                <input type="submit">
+            </form>
+        </div>
+    <br><br>
+{% endif %}
 
 <div class="list-group">
-  {% for object in object_list %}
+  {% for object in synthesisList %}
 
-  <a href="{{ object.pk }}" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ object.heading|title }}</h5>
-      <small>{{ object.content }}</small>
-    </div>
-    <p class="mb-1">{{ object.source }}</p>
-    <small> {{ object.time }}</small>
-  </a>
+      <a href="{{ object.pk }}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ object.heading|title }}</h5>
+          <small>{{ object.content }}</small>
+        </div>
+        <p class="mb-1">{{ object.source }}</p>
+        <small> {{ object.time }}</small>
+      </a>
 
-{% endfor %}
+  {% endfor %}
+</div>
+
+<div class="list-group">
+  {% for object in scrumList %}
+
+      <a href="{{ object.pk }}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ object.date }}</h5>
+          <small>{{ object.content }}</small>
+        </div>
+        <p class="mb-1">{{ object.source }}</p>
+        <small> {{ object.time }}</small>
+      </a>
+
+
+
+  {% endfor %}
 </div>
 
 {% endblock %}
