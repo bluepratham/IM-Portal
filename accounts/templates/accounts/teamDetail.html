@@ -13,7 +13,7 @@
         {% if shared %}
 
             {% for share in shared %}
-                {{ share.text }}<br>
+                {{ share.text|safe }}<br>
             {% endfor %}
             </div>
 

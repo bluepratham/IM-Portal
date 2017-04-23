@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^ironman/', include('ironman.urls')),
     url(r'^support/', include('ironman.urls')),
     url(r'^account/', include('accounts.urls')),
-    url(r'^album/', include('album.urls'))
+    url(r'^album/', include('album.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 
 
 ]

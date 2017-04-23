@@ -56,6 +56,7 @@ def project(request,projNum):
         return render(request, 'scrumForm.html', context)
     if request.method == "POST":
         a = ScrumForm(request.POST)
+        print(request.POST)
         if a.is_valid():
             print(a.is_valid)
             a = a.save(commit=False)
@@ -86,10 +87,12 @@ def share(request, projID, teamName):
         return render(request, 'scrumForm.html', {'form':form})
     elif request.method == "POST":
         form = ShareDocForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
             form.team = User.objects.get(username=teamName)
             form.project = Project.objects.get(id = projID)
+            form.text = request.POST['content']
             form.save()
             return HttpResponse("Sent to Client")
 

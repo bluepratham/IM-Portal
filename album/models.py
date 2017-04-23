@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
+from tinymce.widgets import TinyMCE
 # Create your models here.
 
 class Album(models.Model):
@@ -22,3 +23,10 @@ class Song(models.Model):
 
     def get_absolute_url(self):
         return self.title + " " + str(self.album)
+
+from django.db import models
+from tinymce.models import HTMLField
+
+class MyModel(models.Model):
+    ...
+    content = HTMLField()

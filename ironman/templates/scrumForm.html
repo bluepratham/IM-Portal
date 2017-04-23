@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% if user.is_authenticated %}
-
+{% block head %}
+    {{ shareform.media }}
+{% endblock %}
 
 {% block body %}
      <h3 >Problem Statement:</h3>
