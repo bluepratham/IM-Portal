@@ -26,7 +26,7 @@ class SessionReq(models.Model):
     Details = models.CharField(max_length=200, blank=True)
     project = models.ForeignKey(Project)
     date = models.DateField(default='2011-11-11')
-    votes = models.ManyToManyField(User,limit_choices_to={'groups__name': 'ironmen'})
+    votes = models.ManyToManyField(User,limit_choices_to={'groups__name': 'ironmen'}, blank=True)
 
     class Meta:
         ordering = ['-date']
@@ -56,6 +56,7 @@ class Bug(models.Model):
         return  ('Bug ' if self.que else 'Feature ') + (self.txt[0:15])
 
 class ShareDoc(models.Model):
+    title = models.CharField(max_length=50)
     text = models.TextField()
     team = models.ForeignKey(User)
     project = models.ForeignKey(Project)
@@ -63,3 +64,7 @@ class ShareDoc(models.Model):
 
     def __str__(self):
         return str(self.team) + str(self.project) + self.text[1:15]
+
+    class Meta:
+        ordering = ['-time']
+        verbose_name = "Shared Files"

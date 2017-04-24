@@ -66,14 +66,24 @@
             </table>
             <input type="submit">
         </form>
+    <hr>
+    <h3> Following are sessions requested already, if your requirement is already requested, just vote!</h3>
     {% if sessions %}
         <form action="vote/" method="post"> {% csrf_token %}
+            <table>
             {% for session in sessions %}
-                <form action="">
-                <input type="checkbox" name="sessionID" value="{{ session.id }}"> {{ session.SessionOn }}
-{#                {% if request.user in  #TODO: show start/favorited image in user has already voted  %}#}
+                <tr><td>
+                {{ session.SessionOn|title }}</td>
+                {% if request.user in session.votes.all  %}
+                 <td> <img src="http://keepvid.com/style/images/good_icon.png"> </td>
+                    {% else %}
+                  <td>  <input type="checkbox" name="sessionID" value="{{ session.id }}"> </td>
+                 {% endif %}
+               <td> {{ session.votes.all|length }}</td></tr>
+<!--#TODO:make this into a table --->
                 <br>
             {% endfor %}
+            </table>
             <input type="submit" value="Vote"></form>
 
         </form>

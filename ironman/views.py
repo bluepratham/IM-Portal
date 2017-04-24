@@ -29,6 +29,7 @@ def req_session(request, id):
             a.date = str(datetime.now().date())
             a.project  = Project.objects.get(id=id)
             a.save()
+            a.votes.add(request.user)
         return HttpResponse("Session Request Submitted")
 
 def contact(request):
