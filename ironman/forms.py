@@ -36,7 +36,8 @@ class ShareDocForm(forms.ModelForm):
         model = ShareDoc
         fields = ['title','text']
         widgets = {
-            'text': TinyMCE(attrs={'cols': 180, 'rows': 140}),#TODO: increase size of tinymce field.
+            'text': TinyMCE(attrs={'cols': 180, 'rows': 140}),
+            #TODO: increase size of tinymce field.
 
         }
 

@@ -51,3 +51,7 @@ class EvaluationForm(forms.ModelForm):
     class Meta:
         model = Evaluate
         fields = ['performance','attitude','feedback']
+        widgets = {
+            'performance': forms.NumberInput(  attrs={'min':0,'max':10} ),
+            'attitude': forms.NumberInput(attrs={'min': 0, 'max': 10})
+        }
