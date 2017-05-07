@@ -3,10 +3,13 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import (Registration, editProfile,
                     UserProfileForm, IronManForm,
                     FolderForm, EvaluationForm)
-from .models import Folder, Project
+from .models import Folder, Project, IronMan
 from django.contrib.auth.models import User
 from ironman.models import ShareDoc
 from django.contrib.auth.decorators import login_required
+from rest_framework.views import APIView
+from rest_framework import response,status
+from .serializers import IronManSerializer
 # Create your views here.
 
 
@@ -124,3 +127,14 @@ def evaluate(request, projID, teamName):
         return render(request, 'accounts/teamDetail.html', {'form':form,'prob':prob,
                                                           'shared':shareditems,'is_active':is_active})
 
+
+class IronmanAPI(APIView):
+    print('aaaaaaaaa1')
+    def get(self,request):
+       print('aaaaaaaaa')
+       ironman =  IronMan.objects.all()
+       serializer = IronManSerializer(ironman,many=True)
+       return response.Response(serializer.data)
+
+    def post(self):
+        pass
